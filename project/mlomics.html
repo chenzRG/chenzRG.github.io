@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="BioDSA-1K is a benchmark designed to evaluate AI agents on realistic, data-driven biomedical hypothesis validation tasks."/>
+  <meta property="og:title" content="BioDSA-1K: Benchmarking Data Science Agents for Biomedical Research"/>
+  <meta property="og:description" content="BioDSA-1K is a benchmark designed to evaluate AI agents on realistic, data-driven biomedical hypothesis validation tasks."/>
+  <meta property="og:url" content="https://ryanwangzf.github.io/BioDSA-1K/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/images/biodsa/figure1.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="BioDSA-1K: Benchmarking Data Science Agents for Biomedical Research"/>
+  <meta name="twitter:description" content="BioDSA-1K is a benchmark designed to evaluate AI agents on realistic, data-driven biomedical hypothesis validation tasks."/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/biodsa/figure1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="biomedical research, hypothesis validation, data science agents, benchmark, AI agents, large language models, LLMs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>BioDSA-1K</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">BioDSA-1K: Benchmarking Data Science Agents for Biomedical Research</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">Zifeng Wang<sup>1,2,*</sup>,</span>
+              <span class="author-block">Benjamin Danek<sup>1,2,*</sup>,</span>
+              <span class="author-block">Jimeng Sun<sup>1,2</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign</span><br>
+              <span class="author-block"><sup>2</sup>Keiji.AI</span><br>
+              <span class="author-block"><sup>*</sup>Equal contribution</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                   <!-- Arxiv PDF link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2505.16100" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="https://github.com/RyanWangZf/BioDSA" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/zifeng-ai/BioDSA-1K" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🤗
+                    </span>
+                    <span>Dataset</span>
+                </a>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <source src="static/videos/banner_video.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      </h2>
+    </div>
+  </div>
+</section> -->
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Validating scientific hypotheses is a central challenge in biomedical research, and remains difficult for artificial intelligence (AI) agents due to the complexity of real-world data analysis and evidence interpretation. In this work, we present BioDSA-1K, a benchmark designed to evaluate AI agents on realistic, data-driven biomedical hypothesis validation tasks. BioDSA-1K consists of 1,029 hypothesis-centric tasks paired with 1,177 analysis plans, curated from over 300 published biomedical studies to reflect the structure and reasoning found in authentic research workflows. Each task includes a structured hypothesis derived from the original study's conclusions, expressed in the affirmative to reflect the language of scientific reporting, and one or more pieces of supporting evidence grounded in empirical data tables. While these hypotheses mirror published claims, they remain testable using standard statistical or machine learning methods. The benchmark enables evaluation along four axes: (1) hypothesis decision accuracy, (2) alignment between evidence and conclusion, (3) correctness of the reasoning process, and (4) executability of the AI-generated analysis code. Importantly, BioDSA-1K includes non-verifiable hypotheses: cases where the available data are insufficient to support or refute a claim, reflecting a common yet underexplored scenario in real-world science. We propose BioDSA-1K as a foundation for building and evaluating generalizable, trustworthy AI agents for biomedical discovery.
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- add a teaser figure -->
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full">
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/biodsa/figure1.png">
+                        <!-- adjust the caption font size to be smaller -->
+                        <h2 class="subtitle p-3 is-size-6">
+                            Figure 1:  Benchmark statistics. (left) BIODSA-1K includes diverse types of biomedical research and
+                            data analysis tasks created from 329 publications; the x-axis indicates the publication types.; (Right)
+                            Bubble plot illustrating the diverse range of biomedical data tables in BIODSA-1K, showing each
+                            data table's number of rows (x-axis, log-scale) versus number of columns (y-axis, log-scale).
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Examples</h2>
+          <div class="content has-text-justified">
+            <p>
+                The below are examples of hypotheses and analyses extracted from published biomedical studies in BIODSA-1K.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- add a json box with a couple of tabs for json structured hypothesis and analyses data -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="tabs is-centered is-boxed" id="example-tabs">
+        <ul>
+          <li class="is-active" data-tab="example1"><a>Example 1: Grommes, 2024</a></li>
+          <li data-tab="example2"><a>Example 2: McIntyre, 2024</a></li>
+          <li data-tab="example3"><a>Example 3: Jee, 2024</a></li>
+        </ul>
+      </div>
+      
+      <div class="tab-content">
+        <!-- Example 1 -->
+        <div id="example1" class="tab-pane is-active">
+          <div class="box has-background-light">
+            <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{
+                "PMID": 38995739,
+                "Title": "A Phase II Study Assessing Long-term Response to Ibrutinib Monotherapy in Recurrent or Refractory CNS Lymphoma.",
+                "Abstract": "Ibrutinib is a first-in-class inhibitor of Bruton tyrosine kinase. We previously reported the safety and short-term antitumor activity of ibrutinib in 20 patients with relapsed or refractory (r/r) primary central nervous system (CNS) lymphoma (PCNSL) or secondary CNS lymphoma (SCNSL). We enrolled 26 additional patients with r/r PCNSL/SCNSL into the dose-expansion cohort of the trial into a combined cohort of 46 patients (31 with PCNSL and 15 with SCNSL). Patients received ibrutinib at 560 or 840 mg daily in the dose-escalation cohort and ibrutinib at 840 mg daily in the expansion cohort. The median follow-up was 49.9 and 62.1 months for patients with PCNSL and SCNSL, respectively. We sequenced DNA from available tumor biopsies and cerebrospinal fluid collected before and during ibrutinib therapy. Tumor responses were observed in 23/31 (74%) patients with PCNSL and 9/15 (60%) patients with SCNSL, including 12 complete responses in PCNSL and 7 in SCNSL. The median progression-free survival (PFS) for PCNSL was 4.5 months [95% confidence interval (CI), 2.8-9.2] with 1-year PFS at 23.7% (95% CI, 12.4%-45.1%). The median duration of response in the 23 PCNSL responders was 5.5 months. The median PFS in SCNSL was 5.3 months (95% CI, 1.3-14.5) with a median duration of response of 8.7 months for the 9 responders. Exploratory biomarker analysis suggests that mutations in TBL1XR1 may be associated with a long-term response to ibrutinib in PCNSL (P = 0.0075). Clearance of ctDNA from cerebrospinal fluid was associated with complete and long-term ibrutinib responses. Our study confirms single-agent activity of ibrutinib in r/r CNS lymphoma and identifies molecular determinants of response based on long-term follow-up.",
+                "Results": "",
+                "dataset_ids": [
+                    "pcnsl_msk_2024"
+                ],
+                "hypotheses": [
+                    {
+                        "hypothesis": "Ibrutinib monotherapy is effective in achieving tumor response in patients with relapsed or refractory primary central nervous system lymphoma (PCNSL).",
+                        "wrong_hypothesis": "Ibrutinib monotherapy is not effective in achieving tumor response in patients with relapsed or refractory primary central nervous system lymphoma (PCNSL).",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Calculate the proportion of patients with PCNSL who achieved a tumor response after ibrutinib treatment.",
+                                "evidence": "Tumor responses were observed in 23 out of 31 patients with PCNSL.",
+                                "analysis_variables": [
+                                    "Patient_ID",
+                                    "PCNSL_Status",
+                                    "Tumor_Response"
+                                ],
+                                "result_variable": "Proportion of responders",
+                                "result_variable_value": 0.74
+                            },
+                            {
+                                "analysis_plan": "Perform a survival analysis to determine the median progression-free survival (PFS) for PCNSL patients.",
+                                "evidence": "The median PFS for PCNSL was 4.5 months.",
+                                "analysis_variables": [
+                                    "Patient_ID",
+                                    "PCNSL_Status",
+                                    "Progression_Free_Survival"
+                                ],
+                                "result_variable": "Median PFS",
+                                "result_variable_value": 4.5
+                            }
+                        ]
+                    },
+                    {
+                        "hypothesis": "Mutations in TBL1XR1 are associated with a long-term response to ibrutinib in PCNSL patients.",
+                        "wrong_hypothesis": "Mutations in TBL1XR1 are not associated with a long-term response to ibrutinib in PCNSL patients.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Perform a statistical test to assess the association between TBL1XR1 mutations and long-term response to ibrutinib.",
+                                "evidence": "Mutations in TBL1XR1 may be associated with a long-term response to ibrutinib in PCNSL (P = 0.0075).",
+                                "analysis_variables": [
+                                    "Patient_ID",
+                                    "TBL1XR1_Mutation_Status",
+                                    "Long_Term_Response"
+                                ],
+                                "result_variable": "P-value",
+                                "result_variable_value": 0.0075
+                            }
+                        ]
+                    },
+                    {
+                        "hypothesis": "Clearance of ctDNA from cerebrospinal fluid is associated with complete and long-term ibrutinib responses.",
+                        "wrong_hypothesis": "Clearance of ctDNA from cerebrospinal fluid is not associated with complete and long-term ibrutinib responses.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Analyze the correlation between ctDNA clearance and complete/long-term response to ibrutinib.",
+                                "evidence": "Clearance of ctDNA from cerebrospinal fluid was associated with complete and long-term ibrutinib responses.",
+                                "analysis_variables": [
+                                    "Patient_ID",
+                                    "ctDNA_Clearance_Status",
+                                    "Complete_Response",
+                                    "Long_Term_Response"
+                                ],
+                                "result_variable": "Association",
+                                "result_variable_value": "Positive"
+                            }
+                        ]
+                    }
+                ]
+            }</code></pre>
+          </div>
+        </div>
+        
+        <!-- Example 2 -->
+        <div id="example2" class="tab-pane">
+          <div class="box has-background-light">
+            <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{
+                "PMID": 39214094,
+                "Title": "Distinct clinical outcomes and biological features of specific KRAS mutants in human pancreatic cancer.",
+                "Abstract": "KRAS mutations in pancreatic ductal adenocarcinoma (PDAC) are suggested to vary in oncogenicity but the implications for human patients have not been explored in depth. We examined 1,360 consecutive PDAC patients undergoing surgical resection and find that KRASG12R mutations are enriched in early-stage (stage I) disease, owing not to smaller tumor size but increased node-negativity. KRASG12R tumors are associated with decreased distant recurrence and improved survival as compared to KRASG12D. To understand the biological underpinnings, we performed spatial profiling of 20 patients and bulk RNA-sequencing of 100 tumors, finding enhanced oncogenic signaling and epithelial-mesenchymal transition (EMT) in KRASG12D and increased nuclear factor \u03baB (NF-\u03baB) signaling in KRASG12R tumors. Orthogonal studies of mouse KrasG12R PDAC organoids show decreased migration and improved survival in orthotopic models. KRAS alterations in PDAC are thus associated with distinct presentation, clinical outcomes, and biological behavior, highlighting the prognostic value of mutational analysis and the importance of articulating mutation-specific PDAC biology.",
+                "Results": "",
+                "dataset_ids": [
+                    "pancreas_msk_2024"
+                ],
+                "hypotheses": [
+                    {
+                        "hypothesis": "KRASG12R mutations are associated with improved survival compared to KRASG12D mutations in PDAC patients.",
+                        "wrong_hypothesis": "KRASG12R mutations are associated with worse survival compared to KRASG12D mutations in PDAC patients.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Perform a survival analysis comparing overall survival between patients with KRASG12R and KRASG12D mutations.",
+                                "evidence": "KRASG12R tumors are associated with improved survival compared to KRASG12D.",
+                                "analysis_variables": [
+                                    "KRAS_mutation_type",
+                                    "overall_survival_time",
+                                    "survival_status"
+                                ],
+                                "result_variable": "hazard_ratio",
+                                "result_variable_value": "<1 (indicating improved survival for KRASG12R)"
+                            }
+                        ]
+                    },
+                    {
+                        "hypothesis": "KRASG12R mutations are enriched in early-stage (stage I) PDAC compared to other KRAS mutations.",
+                        "wrong_hypothesis": "KRASG12R mutations are not enriched in early-stage (stage I) PDAC compared to other KRAS mutations.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Calculate the proportion of KRASG12R mutations in stage I PDAC and compare it to the proportion of other KRAS mutations in the same stage.",
+                                "evidence": "KRASG12R mutations are enriched in early-stage (stage I) disease.",
+                                "analysis_variables": [
+                                    "KRAS_mutation_type",
+                                    "cancer_stage"
+                                ],
+                                "result_variable": "proportion",
+                                "result_variable_value": "Higher proportion of KRASG12R in stage I compared to other mutations"
+                            }
+                        ]
+                    },
+                    {
+                        "hypothesis": "KRASG12R tumors have increased node-negativity compared to KRASG12D tumors.",
+                        "wrong_hypothesis": "KRASG12R tumors have decreased node-negativity compared to KRASG12D tumors.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Compare the rate of node-negativity between KRASG12R and KRASG12D tumors.",
+                                "evidence": "KRASG12R mutations are associated with increased node-negativity.",
+                                "analysis_variables": [
+                                    "KRAS_mutation_type",
+                                    "node_status"
+                                ],
+                                "result_variable": "node_negativity_rate",
+                                "result_variable_value": "Higher node-negativity rate for KRASG12R"
+                            }
+                        ]
+                    },
+                    {
+                        "hypothesis": "KRASG12D tumors exhibit enhanced epithelial-mesenchymal transition (EMT) compared to KRASG12R tumors.",
+                        "wrong_hypothesis": "KRASG12D tumors exhibit reduced epithelial-mesenchymal transition (EMT) compared to KRASG12R tumors.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Perform RNA-sequencing analysis to compare EMT-related gene expression between KRASG12D and KRASG12R tumors.",
+                                "evidence": "Enhanced EMT in KRASG12D tumors.",
+                                "analysis_variables": [
+                                    "KRAS_mutation_type",
+                                    "EMT_gene_expression"
+                                ],
+                                "result_variable": "EMT_score",
+                                "result_variable_value": "Higher EMT score for KRASG12D"
+                            }
+                        ]
+                    },
+                    {
+                        "hypothesis": "KRASG12R tumors show increased nuclear factor \u03baB (NF-\u03baB) signaling compared to KRASG12D tumors.",
+                        "wrong_hypothesis": "KRASG12R tumors show decreased nuclear factor \u03baB (NF-\u03baB) signaling compared to KRASG12D tumors.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Analyze NF-\u03baB signaling pathway activity using RNA-sequencing data from KRASG12R and KRASG12D tumors.",
+                                "evidence": "Increased NF-\u03baB signaling in KRASG12R tumors.",
+                                "analysis_variables": [
+                                    "KRAS_mutation_type",
+                                    "NF-\u03baB_pathway_activity"
+                                ],
+                                "result_variable": "NF-\u03baB_activity_score",
+                                "result_variable_value": "Higher NF-\u03baB activity score for KRASG12R"
+                            }
+                        ]
+                    }
+                ]
+            }</code></pre>
+          </div>
+        </div>
+        
+        <!-- Example 3 -->
+        <div id="example3" class="tab-pane">
+          <div class="box has-background-light">
+            <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{
+                "PMID": 39506116,
+                "Title": "Automated real-world data integration improves cancer outcome prediction.",
+                "Abstract": "The digitization of health records and growing availability of tumour DNA sequencing provide an opportunity to study the determinants of cancer outcomes with unprecedented richness. Patient data are often stored in unstructured text and siloed datasets. Here we combine natural language processing annotations1,2 with structured medication, patient-reported demographic, tumour registry and tumour genomic data from 24,950 patients\u00a0at Memorial Sloan Kettering\u00a0Cancer Center to\u00a0generate a clinicogenomic, harmonized oncologic real-world dataset (MSK-CHORD). MSK-CHORD includes data for non-small-cell lung (n\u2009=\u20097,809), breast (n\u2009=\u20095,368), colorectal (n\u2009=\u20095,543), prostate (n\u2009=\u20093,211) and pancreatic (n\u2009=\u20093,109) cancers and enables discovery of clinicogenomic relationships not apparent in smaller datasets. Leveraging MSK-CHORD to train machine learning models to predict overall survival, we find that models including features derived from natural language processing, such as sites of disease, outperform those based on genomic data or stage alone as tested by cross-validation and an external, multi-institution dataset. By annotating 705,241 radiology reports, MSK-CHORD also uncovers predictors of metastasis to specific organ sites, including a relationship between SETD2 mutation and lower metastatic potential in immunotherapy-treated lung adenocarcinoma corroborated in independent datasets. We demonstrate the feasibility of automated annotation from unstructured notes and its utility in predicting patient outcomes. The resulting data are provided as a public resource for real-world oncologic research.",
+                "Results": "",
+                "dataset_ids": [
+                    "msk_chord_2024"
+                ],
+                "hypotheses": [
+                    {
+                        "hypothesis": "Models including features derived from natural language processing outperform those based on genomic data or stage alone in predicting overall survival.",
+                        "wrong_hypothesis": "Models based solely on genomic data outperform those including features derived from natural language processing in predicting overall survival.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Train machine learning models using features derived from natural language processing and compare their performance to models using genomic data or stage alone through cross-validation.",
+                                "evidence": "Models with NLP features showed higher predictive accuracy for overall survival compared to genomic data or stage alone.",
+                                "analysis_variables": [
+                                    "NLP_features",
+                                    "genomic_data",
+                                    "cancer_stage"
+                                ],
+                                "result_variable": "predictive_accuracy",
+                                "result_variable_value": "Higher accuracy for NLP features model"
+                            },
+                            {
+                                "analysis_plan": "Validate the performance of NLP-based models using an external, multi-institution dataset.",
+                                "evidence": "NLP-based models maintained superior performance in external validation.",
+                                "analysis_variables": [
+                                    "NLP_features",
+                                    "external_dataset"
+                                ],
+                                "result_variable": "validation_accuracy",
+                                "result_variable_value": "Superior performance in external dataset"
+                            }
+                        ]
+                    },
+                    {
+                        "hypothesis": "SETD2 mutation is associated with lower metastatic potential in immunotherapy-treated lung adenocarcinoma.",
+                        "wrong_hypothesis": "SETD2 mutation is associated with higher metastatic potential in immunotherapy-treated lung adenocarcinoma.",
+                        "supporting_evidences": [
+                            {
+                                "analysis_plan": "Analyze the correlation between SETD2 mutation status and metastatic potential in lung adenocarcinoma patients treated with immunotherapy.",
+                                "evidence": "SETD2 mutation correlates with lower rates of metastasis.",
+                                "analysis_variables": [
+                                    "SETD2_mutation_status",
+                                    "metastatic_potential"
+                                ],
+                                "result_variable": "correlation_coefficient",
+                                "result_variable_value": "Negative correlation"
+                            },
+                            {
+                                "analysis_plan": "Corroborate findings using independent datasets to confirm the relationship between SETD2 mutation and metastasis.",
+                                "evidence": "Independent datasets confirm lower metastatic potential in SETD2 mutated cases.",
+                                "analysis_variables": [
+                                    "SETD2_mutation_status",
+                                    "independent_datasets"
+                                ],
+                                "result_variable": "confirmation_rate",
+                                "result_variable_value": "Consistent findings across datasets"
+                            }
+                        ]
+                    }
+                ]
+            }</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Hide inactive tabs */
+    .tab-pane {
+      display: none;
+    }
+    
+    .tab-pane.is-active {
+      display: block;
+    }
+    
+    /* Constrain width of JSON boxes */
+    .json-display {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    
+    .container.is-max-desktop {
+      max-width: 800px !important;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab switching functionality
+      const tabs = document.querySelectorAll('#example-tabs li');
+      const tabContents = document.querySelectorAll('.tab-pane');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('is-active'));
+          tabContents.forEach(c => c.classList.remove('is-active'));
+          
+          // Add active class to selected tab and content
+          const targetId = tab.dataset.tab;
+          tab.classList.add('is-active');
+          document.getElementById(targetId).classList.add('is-active');
+        });
+      });
+      
+      // Add syntax highlighting to JSON (optional enhancement)
+      const jsonDisplays = document.querySelectorAll('.json-display code');
+      jsonDisplays.forEach(display => {
+        // Basic JSON formatting - you could use a library like highlight.js for better formatting
+        const json = display.textContent;
+        try {
+          const formattedJson = JSON.stringify(JSON.parse(json), null, 2);
+          display.textContent = formattedJson;
+        } catch (e) {
+          console.error('Error formatting JSON:', e);
+        }
+      });
+    });
+  </script>
+
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Comparison with existing benchmarks</h2>
+          <div class="content has-text-justified">
+            <p> Compared to existing benchmarks, which
+                often involve simpler, smaller, or less diverse datasets, our benchmark presents a significantly more
+                challenging and realistic setting for evaluating AI agents on biomedical data science tasks.
+                </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full">
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/biodsa/figure2.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+<section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Benchmark results: Hypothesis validation</h2>
+          <div class="content has-text-justified">
+            <p>
+                AI agents tend to be conservative in hypothesis validation with higher rates of missed findings than false positives, with CodeGen showing Type II errors of 0.164 compared to Type I errors of 0.090 for Biomarkers. Reasoning-enhanced versions of both ReAct and CodeGen models consistently outperform their base counterparts, with ReAct-based methods generally achieving better results than CodeGen, particularly in complex domains like Genomics where reasoning augmentation reduced Type II errors from 0.191 to 0.107.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full">
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/biodsa/figure3.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+<section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Benchmark results: Non-verifiable hypotheses</h2>
+          <div class="content has-text-justified">
+            <p>
+                (a): when CodeGen method makes non-exectuable code, it sometimes hallucinates the hypothesis as true or false, which should be non-verifiable. 
+            </p>
+            <p>
+                (b): For non-verifiable hypotheses, we further found all agent methods make hallucinated hypothesis decision as true or false, while the ReAct based methods are more likely to make correct decision.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full">
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/biodsa/figure4.png" alt="CFT">
+                        <!-- adjust the caption font size to be smaller -->
+                        <!-- <h2 class="subtitle has-text-centered  p-3 is-size-6">
+                            Figure 3: Comparison between CFT and SFT on 50K samples from WebInstruct). SFT-verified means SFT training on the responses validated by GPT-4o, SFT-GPT4o means SFT training on the responses from GPT-4o. CFT is our approach, which trains on the critique provided by GPT-4o
+                        </h2> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Reference</h2>
+      Please kindly cite our paper if you use our code or results:
+      <pre><code>@article{wang2025biodsa,
+        title     = {BioDSA-1K: Benchmarking Data Science Agents for Biomedical Research},
+        author    = {Wang, Zifeng and Danek, Benjamin and Sun, Jimeng},
+        year      = {2025},
+      }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
