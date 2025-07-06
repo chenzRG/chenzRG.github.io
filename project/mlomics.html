@@ -151,7 +151,7 @@
                         <img src="static/images/mlomics/pic_1.pdf">
                         <!-- adjust the caption font size to be smaller -->
                         <h2 class="subtitle p-3 is-size-6">
-                            Figure 1: Schematic workflow of creating the MLOmics.
+                          Figure 1: Schematic workflow of creating the MLOmics.
                           The process starts with collecting patient samples covering 32 cancer types from the TCGA project. 
                           All resources in diverse data types and sizes are uniformly integrated and processed to contain data of four omics types. 
                           Datasets for benchmark ML tasks were constructed based on the processed data. MLOmics also selected baselines, metrics, and resources to support downstream biological analysis. 
@@ -197,20 +197,20 @@
         <!-- Example 1 -->
         <div id="example1" class="tab-pane is-active">
           <div class="box has-background-light">
-            <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{
-                # Select the original scale GS-BRCA dataset and
-                train the DeepCC model for the classification task.
-                cd Scripts/Classification
-                ./DeepCC.sh GS-BRCA Original
-                # Select the top scale ACC dataset and train the
-                Subtype-GAN model for the clustering task.
-                cd Scripts/Clustering
-                ./Subtype-GAN.sh ACC Top
-                # Select the top scale ACC dataset and train the GAIN
-                model for the imputation task (0.3 missing rate).
-                cd Scripts/Imputation
-                  
-            }</code></pre>
+            <pre class="code-display" style="max-height: 400px; overflow-y: auto; background-color: #f4f4f4; border-radius: 6px; padding: 1em;">
+<code class="language-bash">
+# Select the original scale GS-BRCA dataset and train the DeepCC model for the classification task.
+cd Scripts/Classification
+./DeepCC.sh GS-BRCA Original
+
+# Select the top scale ACC dataset and train the Subtype-GAN model for the clustering task.
+cd Scripts/Clustering
+./Subtype-GAN.sh ACC Top
+
+# Select the top scale ACC dataset and train the GAIN model for the imputation task (0.3 missing rate).
+cd Scripts/Imputation
+</code>
+</pre>
           </div>
         </div>
         
