@@ -189,7 +189,7 @@
         <ul>
           <li class="is-active" data-tab="example1"><a>Example 1: Grommes, 2024</a></li>
           <li data-tab="example2"><a>Example 2: McIntyre, 2024</a></li>
-          <li data-tab="example3"><a>Example 3: Jee, 2024</a></li>
+          <li data-tab="example3"><a>Biological evaluation</a></li>
         </ul>
       </div>
       
@@ -218,96 +218,21 @@
         <div id="example2" class="tab-pane">
           <div class="box has-background-light">
             <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{
-                "PMID": 39214094,
-                "Title": "Distinct clinical outcomes and biological features of specific KRAS mutants in human pancreatic cancer.",
-                "Abstract": "KRAS mutations in pancreatic ductal adenocarcinoma (PDAC) are suggested to vary in oncogenicity but the implications for human patients have not been explored in depth. We examined 1,360 consecutive PDAC patients undergoing surgical resection and find that KRASG12R mutations are enriched in early-stage (stage I) disease, owing not to smaller tumor size but increased node-negativity. KRASG12R tumors are associated with decreased distant recurrence and improved survival as compared to KRASG12D. To understand the biological underpinnings, we performed spatial profiling of 20 patients and bulk RNA-sequencing of 100 tumors, finding enhanced oncogenic signaling and epithelial-mesenchymal transition (EMT) in KRASG12D and increased nuclear factor \u03baB (NF-\u03baB) signaling in KRASG12R tumors. Orthogonal studies of mouse KrasG12R PDAC organoids show decreased migration and improved survival in orthotopic models. KRAS alterations in PDAC are thus associated with distinct presentation, clinical outcomes, and biological behavior, highlighting the prognostic value of mutational analysis and the importance of articulating mutation-specific PDAC biology.",
-                "Results": "",
-                "dataset_ids": [
-                    "pancreas_msk_2024"
-                ],
-                "hypotheses": [
-                    {
-                        "hypothesis": "KRASG12R mutations are associated with improved survival compared to KRASG12D mutations in PDAC patients.",
-                        "wrong_hypothesis": "KRASG12R mutations are associated with worse survival compared to KRASG12D mutations in PDAC patients.",
-                        "supporting_evidences": [
-                            {
-                                "analysis_plan": "Perform a survival analysis comparing overall survival between patients with KRASG12R and KRASG12D mutations.",
-                                "evidence": "KRASG12R tumors are associated with improved survival compared to KRASG12D.",
-                                "analysis_variables": [
-                                    "KRAS_mutation_type",
-                                    "overall_survival_time",
-                                    "survival_status"
-                                ],
-                                "result_variable": "hazard_ratio",
-                                "result_variable_value": "<1 (indicating improved survival for KRASG12R)"
-                            }
-                        ]
-                    },
-                    {
-                        "hypothesis": "KRASG12R mutations are enriched in early-stage (stage I) PDAC compared to other KRAS mutations.",
-                        "wrong_hypothesis": "KRASG12R mutations are not enriched in early-stage (stage I) PDAC compared to other KRAS mutations.",
-                        "supporting_evidences": [
-                            {
-                                "analysis_plan": "Calculate the proportion of KRASG12R mutations in stage I PDAC and compare it to the proportion of other KRAS mutations in the same stage.",
-                                "evidence": "KRASG12R mutations are enriched in early-stage (stage I) disease.",
-                                "analysis_variables": [
-                                    "KRAS_mutation_type",
-                                    "cancer_stage"
-                                ],
-                                "result_variable": "proportion",
-                                "result_variable_value": "Higher proportion of KRASG12R in stage I compared to other mutations"
-                            }
-                        ]
-                    },
-                    {
-                        "hypothesis": "KRASG12R tumors have increased node-negativity compared to KRASG12D tumors.",
-                        "wrong_hypothesis": "KRASG12R tumors have decreased node-negativity compared to KRASG12D tumors.",
-                        "supporting_evidences": [
-                            {
-                                "analysis_plan": "Compare the rate of node-negativity between KRASG12R and KRASG12D tumors.",
-                                "evidence": "KRASG12R mutations are associated with increased node-negativity.",
-                                "analysis_variables": [
-                                    "KRAS_mutation_type",
-                                    "node_status"
-                                ],
-                                "result_variable": "node_negativity_rate",
-                                "result_variable_value": "Higher node-negativity rate for KRASG12R"
-                            }
-                        ]
-                    },
-                    {
-                        "hypothesis": "KRASG12D tumors exhibit enhanced epithelial-mesenchymal transition (EMT) compared to KRASG12R tumors.",
-                        "wrong_hypothesis": "KRASG12D tumors exhibit reduced epithelial-mesenchymal transition (EMT) compared to KRASG12R tumors.",
-                        "supporting_evidences": [
-                            {
-                                "analysis_plan": "Perform RNA-sequencing analysis to compare EMT-related gene expression between KRASG12D and KRASG12R tumors.",
-                                "evidence": "Enhanced EMT in KRASG12D tumors.",
-                                "analysis_variables": [
-                                    "KRAS_mutation_type",
-                                    "EMT_gene_expression"
-                                ],
-                                "result_variable": "EMT_score",
-                                "result_variable_value": "Higher EMT score for KRASG12D"
-                            }
-                        ]
-                    },
-                    {
-                        "hypothesis": "KRASG12R tumors show increased nuclear factor \u03baB (NF-\u03baB) signaling compared to KRASG12D tumors.",
-                        "wrong_hypothesis": "KRASG12R tumors show decreased nuclear factor \u03baB (NF-\u03baB) signaling compared to KRASG12D tumors.",
-                        "supporting_evidences": [
-                            {
-                                "analysis_plan": "Analyze NF-\u03baB signaling pathway activity using RNA-sequencing data from KRASG12R and KRASG12D tumors.",
-                                "evidence": "Increased NF-\u03baB signaling in KRASG12R tumors.",
-                                "analysis_variables": [
-                                    "KRAS_mutation_type",
-                                    "NF-\u03baB_pathway_activity"
-                                ],
-                                "result_variable": "NF-\u03baB_activity_score",
-                                "result_variable_value": "Higher NF-\u03baB activity score for KRASG12R"
-                            }
-                        ]
-                    }
-                ]
+                #!/bin/bash
+                # Save the current directory
+                current_dir=$(pwd)
+                # Navigate to the specific folder
+                cd ../../../Classification_and_Clustering/Python/
+                Subtype-GAN
+                # Record the start time
+                echo "Script started at: $(date)" >> results/$1_$2.cc
+                # Set dummy number of clusters to 4
+                python SubtypeGAN.py -m SubtypeGAN -n 4 -t $1_$2
+                python SubtypeGAN.py -m cc -t $1_$2
+                # Record the end time
+                echo "Script ended at: $(date)" >> results/$1_$2.cc
+                # Navigate back to the original directory
+                cd "$current_dir"
             }</code></pre>
           </div>
         </div>
@@ -316,68 +241,20 @@
         <div id="example3" class="tab-pane">
           <div class="box has-background-light">
             <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{
-                "PMID": 39506116,
-                "Title": "Automated real-world data integration improves cancer outcome prediction.",
-                "Abstract": "The digitization of health records and growing availability of tumour DNA sequencing provide an opportunity to study the determinants of cancer outcomes with unprecedented richness. Patient data are often stored in unstructured text and siloed datasets. Here we combine natural language processing annotations1,2 with structured medication, patient-reported demographic, tumour registry and tumour genomic data from 24,950 patients\u00a0at Memorial Sloan Kettering\u00a0Cancer Center to\u00a0generate a clinicogenomic, harmonized oncologic real-world dataset (MSK-CHORD). MSK-CHORD includes data for non-small-cell lung (n\u2009=\u20097,809), breast (n\u2009=\u20095,368), colorectal (n\u2009=\u20095,543), prostate (n\u2009=\u20093,211) and pancreatic (n\u2009=\u20093,109) cancers and enables discovery of clinicogenomic relationships not apparent in smaller datasets. Leveraging MSK-CHORD to train machine learning models to predict overall survival, we find that models including features derived from natural language processing, such as sites of disease, outperform those based on genomic data or stage alone as tested by cross-validation and an external, multi-institution dataset. By annotating 705,241 radiology reports, MSK-CHORD also uncovers predictors of metastasis to specific organ sites, including a relationship between SETD2 mutation and lower metastatic potential in immunotherapy-treated lung adenocarcinoma corroborated in independent datasets. We demonstrate the feasibility of automated annotation from unstructured notes and its utility in predicting patient outcomes. The resulting data are provided as a public resource for real-world oncologic research.",
-                "Results": "",
-                "dataset_ids": [
-                    "msk_chord_2024"
-                ],
-                "hypotheses": [
-                    {
-                        "hypothesis": "Models including features derived from natural language processing outperform those based on genomic data or stage alone in predicting overall survival.",
-                        "wrong_hypothesis": "Models based solely on genomic data outperform those including features derived from natural language processing in predicting overall survival.",
-                        "supporting_evidences": [
-                            {
-                                "analysis_plan": "Train machine learning models using features derived from natural language processing and compare their performance to models using genomic data or stage alone through cross-validation.",
-                                "evidence": "Models with NLP features showed higher predictive accuracy for overall survival compared to genomic data or stage alone.",
-                                "analysis_variables": [
-                                    "NLP_features",
-                                    "genomic_data",
-                                    "cancer_stage"
-                                ],
-                                "result_variable": "predictive_accuracy",
-                                "result_variable_value": "Higher accuracy for NLP features model"
-                            },
-                            {
-                                "analysis_plan": "Validate the performance of NLP-based models using an external, multi-institution dataset.",
-                                "evidence": "NLP-based models maintained superior performance in external validation.",
-                                "analysis_variables": [
-                                    "NLP_features",
-                                    "external_dataset"
-                                ],
-                                "result_variable": "validation_accuracy",
-                                "result_variable_value": "Superior performance in external dataset"
-                            }
-                        ]
-                    },
-                    {
-                        "hypothesis": "SETD2 mutation is associated with lower metastatic potential in immunotherapy-treated lung adenocarcinoma.",
-                        "wrong_hypothesis": "SETD2 mutation is associated with higher metastatic potential in immunotherapy-treated lung adenocarcinoma.",
-                        "supporting_evidences": [
-                            {
-                                "analysis_plan": "Analyze the correlation between SETD2 mutation status and metastatic potential in lung adenocarcinoma patients treated with immunotherapy.",
-                                "evidence": "SETD2 mutation correlates with lower rates of metastasis.",
-                                "analysis_variables": [
-                                    "SETD2_mutation_status",
-                                    "metastatic_potential"
-                                ],
-                                "result_variable": "correlation_coefficient",
-                                "result_variable_value": "Negative correlation"
-                            },
-                            {
-                                "analysis_plan": "Corroborate findings using independent datasets to confirm the relationship between SETD2 mutation and metastasis.",
-                                "evidence": "Independent datasets confirm lower metastatic potential in SETD2 mutated cases.",
-                                "analysis_variables": [
-                                    "SETD2_mutation_status",
-                                    "independent_datasets"
-                                ],
-                                "result_variable": "confirmation_rate",
-                                "result_variable_value": "Consistent findings across datasets"
-                            }
-                        ]
-                    }
-                ]
+                # Differential gene expression analysis (P-value = 0.05)
+                with volcano plot.
+                cd Scripts/Dwonstream_Analysis
+                ./volcano.sh <clustering_log_path> [options]
+                --p_value_threshold 0.05
+                # Pathway enrichment analysis (P-value = 0.05)
+                with KEGG Pathway visualization.
+                cd Scripts/Dwonstream_Analysis
+                ./pwanalysis.sh <clustering_log_path> [options]
+                --p_value_cutoff 0.05
+                "<clustering_log_path>: Location of resultant sample
+                label.
+                [options]: Optional parameters such as P-value (e.g.,
+                p_value_threshold 0.05)"
             }</code></pre>
           </div>
         </div>
