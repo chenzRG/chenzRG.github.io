@@ -193,7 +193,7 @@
       <div class="tabs is-centered is-boxed" id="example-tabs">
         <ul>
           <li class="is-active" data-tab="example1"><a>Data&model usage</a></li>
-          <li data-tab="example2"><a>ML output transformation, 2024</a></li>
+          <li data-tab="example2"><a>Output save&transformation</a></li>
           <li data-tab="example3"><a>Biological evaluation</a></li>
         </ul>
       </div>
@@ -203,16 +203,19 @@
         <div id="example1" class="tab-pane is-active">
           <div class="box has-background-light">
             <pre><code class="language-bash">
-# Select the original scale GS-BRCA dataset and train the DeepCC model for the classification task.
-cd Scripts/Classification
-./DeepCC.sh GS-BRCA Original
-
-# Select the top scale ACC dataset and train the Subtype-GAN model for the clustering task.
-cd Scripts/Clustering
-./Subtype-GAN.sh ACC Top
-
-# Select the top scale ACC dataset and train the GAIN model for the imputation task (0.3 missing rate).
-cd Scripts/Imputation
+        # Select the original scale GS-BRCA dataset 
+        # and train the DeepCC model for the classification task.
+        cd Scripts/Classification
+        ./DeepCC.sh GS-BRCA Original
+        
+        # Select the top scale ACC dataset 
+        # and train the Subtype-GAN model for the clustering task.
+        cd Scripts/Clustering
+        ./Subtype-GAN.sh ACC Top
+        
+        # Select the top scale ACC dataset 
+        # and train the GAIN model for the imputation task (0.3 missing rate).
+        cd Scripts/Imputation
             </code></pre>
           </div>
         </div>
@@ -221,21 +224,21 @@ cd Scripts/Imputation
         <div id="example2" class="tab-pane">
           <div class="box has-background-light">
              <pre><code class="language-bash">
-#!/bin/bash
-# Save the current directory
-current_dir=$(pwd)
-# Navigate to the specific folder
-cd ../../../Classification_and_Clustering/Python/
-Subtype-GAN
-# Record the start time
-echo "Script started at: $(date)" >> results/$1_$2.cc
-# Set dummy number of clusters to 4
-python SubtypeGAN.py -m SubtypeGAN -n 4 -t $1_$2
-python SubtypeGAN.py -m cc -t $1_$2
-# Record the end time
-echo "Script ended at: $(date)" >> results/$1_$2.cc
-# Navigate back to the original directory
-cd "$current_dir"
+        #!/bin/bash
+        # Save the current directory
+        current_dir=$(pwd)
+        # Navigate to the specific folder
+        cd ../../../Classification_and_Clustering/Python/
+        Subtype-GAN
+        # Record the start time
+        echo "Script started at: $(date)" >> results/$1_$2.cc
+        # Set dummy number of clusters to 4
+        python SubtypeGAN.py -m SubtypeGAN -n 4 -t $1_$2
+        python SubtypeGAN.py -m cc -t $1_$2
+        # Record the end time
+        echo "Script ended at: $(date)" >> results/$1_$2.cc
+        # Navigate back to the original directory
+        cd "$current_dir"
             </code></pre>
           </div>
         </div>
@@ -243,20 +246,19 @@ cd "$current_dir"
         <!-- Example 3 -->
         <div id="example3" class="tab-pane">
           <div class="box has-background-light">
-            <!--<pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{-->
-             <pre><code class="language-bash">    
-# Differential gene expression analysis (P-value = 0.05) with volcano plot.
-cd Scripts/Dwonstream_Analysis
-./volcano.sh <clustering_log_path> [options]
---p_value_threshold 0.05
-# Pathway enrichment analysis (P-value = 0.05)
-with KEGG Pathway visualization.
-cd Scripts/Dwonstream_Analysis
-./pwanalysis.sh <clustering_log_path> [options]
---p_value_cutoff 0.05
-"<clustering_log_path>: Location of resultant sample label.
-[options]: Optional parameters such as P-value (e.g.,
-p_value_threshold 0.05)"
+            <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>
+        # Differential gene expression analysis (P-value = 0.05) with volcano plot.
+        cd Scripts/Dwonstream_Analysis
+        ./volcano.sh <clustering_log_path> [options]
+        --p_value_threshold 0.05
+        # Pathway enrichment analysis (P-value = 0.05)
+        with KEGG Pathway visualization.
+        cd Scripts/Dwonstream_Analysis
+        ./pwanalysis.sh <clustering_log_path> [options]
+        --p_value_cutoff 0.05
+        "<clustering_log_path>: Location of resultant sample label.
+        [options]: Optional parameters such as P-value (e.g.,
+        p_value_threshold 0.05)"
             </code></pre>
           </div>
         </div>
