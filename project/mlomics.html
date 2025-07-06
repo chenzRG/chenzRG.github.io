@@ -246,7 +246,7 @@
         <!-- Example 3 -->
         <div id="example3" class="tab-pane">
           <div class="box has-background-light">
-            <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>
+            <pre><code>
         # Differential gene expression analysis (P-value = 0.05) with volcano plot.
         cd Scripts/Dwonstream_Analysis
         ./volcano.sh <clustering_log_path> [options]
@@ -327,11 +327,22 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Comparison with existing benchmarks</h2>
+          <h2 class="title is-3">Experimental results and downstream analyses</h2>
           <div class="content has-text-justified">
-            <p> Compared to existing benchmarks, which
-                often involve simpler, smaller, or less diverse datasets, our benchmark presents a significantly more
-                challenging and realistic setting for evaluating AI agents on biomedical data science tasks.
+            <p> Experimental results and downstream analyses of machine learning baselines applied to
+MLOmics datasets. (a) PREC bar plots for each baseline method across all datasets. Overall, machine
+learning-based methods (Subtype-GAN, DCAP, MAUI, XOmiVAE, CustOmics, and DeepCC) outperformed
+traditional statistical methods (SVM, XGBoost, RF, and LR). (b) SIL heatmaps for each baseline method across all
+datasets. Methods employing deep generative neural network architectures (Subtype-GAN, DCAP, MAUI,
+XOmiVAE, and MCluster-VAEs) generally outperformed other methods (SNF, NEMO, CIMLR, iClusterBayes,
+and moCluster). (c) Box plots for each baseline method across three imputation datasets. Matrix decomposition
+methods (SVD, Spectral) outperformed deep learning-based methods (GAIN, GNN). (d–e) Schematic illustrations
+of downstream analysis results based on the clustering outcomes of XOmiVAE applied to specific cancer patient
+clustering datasets. In the survival analysis plot, survival curves in different colors correspond to distinct clustering
+groups. In the volcano plot and KEGG pathway analysis, red and blue indicate downregulated and upregulated
+genes between patient groups, respectively. In the patient group clustering plot, different colors represent samples
+belonging to different clusters. In the simulated gene knockout analysis, red and green dots indicate sample
+clustering before and after expression knockout, respectively.
                 </p>
           </div>
         </div>
@@ -346,7 +357,7 @@
                 <div class="column is-full">
                     <div class="item">
                         <!-- Your image here -->
-                        <img src="static/images/biodsa/figure2.png">
+                        <img src="static/images/biodsa/fig_2.pdf">
                     </div>
                 </div>
             </div>
