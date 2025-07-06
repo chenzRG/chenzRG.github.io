@@ -5,7 +5,12 @@
   <meta name="description" content="MLOmics: Cancer Multi-Omics Database for Machine Learning.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+  <!-- Prism CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <!-- Prism JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <!-- Optional: bash support -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <title>MLOmics: Cancer Multi-Omics Database for Machine Learning</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
@@ -198,42 +203,42 @@
         <div id="example1" class="tab-pane is-active">
           <div class="box has-background-light">
             <pre class="code-display" style="max-height: 400px; overflow-y: auto; background-color: #f4f4f4; border-radius: 6px; padding: 1em;">
-<code class="language-bash">
-# Select the original scale GS-BRCA dataset and train the DeepCC model for the classification task.
-cd Scripts/Classification
-./DeepCC.sh GS-BRCA Original
-
-# Select the top scale ACC dataset and train the Subtype-GAN model for the clustering task.
-cd Scripts/Clustering
-./Subtype-GAN.sh ACC Top
-
-# Select the top scale ACC dataset and train the GAIN model for the imputation task (0.3 missing rate).
-cd Scripts/Imputation
-</code>
-</pre>
+            <code class="language-bash">
+            # Select the original scale GS-BRCA dataset and train the DeepCC model for the classification task.
+            cd Scripts/Classification
+            ./DeepCC.sh GS-BRCA Original
+            
+            # Select the top scale ACC dataset and train the Subtype-GAN model for the clustering task.
+            cd Scripts/Clustering
+            ./Subtype-GAN.sh ACC Top
+            
+            # Select the top scale ACC dataset and train the GAIN model for the imputation task (0.3 missing rate).
+            cd Scripts/Imputation
+            </code>
+          </pre>
           </div>
         </div>
         
         <!-- Example 2 -->
         <div id="example2" class="tab-pane">
           <div class="box has-background-light">
-            <pre class="json-display" style="max-height: 400px; overflow-y: auto;"><code>{
-                #!/bin/bash
-                # Save the current directory
-                current_dir=$(pwd)
-                # Navigate to the specific folder
-                cd ../../../Classification_and_Clustering/Python/
-                Subtype-GAN
-                # Record the start time
-                echo "Script started at: $(date)" >> results/$1_$2.cc
-                # Set dummy number of clusters to 4
-                python SubtypeGAN.py -m SubtypeGAN -n 4 -t $1_$2
-                python SubtypeGAN.py -m cc -t $1_$2
-                # Record the end time
-                echo "Script ended at: $(date)" >> results/$1_$2.cc
-                # Navigate back to the original directory
-                cd "$current_dir"
-            }</code></pre>
+             <pre><code class="language-bash">
+             #!/bin/bash
+             # Save the current directory
+             current_dir=$(pwd)
+             # Navigate to the specific folder
+             cd ../../../Classification_and_Clustering/Python/
+             Subtype-GAN
+             # Record the start time
+             echo "Script started at: $(date)" >> results/$1_$2.cc
+             # Set dummy number of clusters to 4
+             python SubtypeGAN.py -m SubtypeGAN -n 4 -t $1_$2
+             python SubtypeGAN.py -m cc -t $1_$2
+             # Record the end time
+             echo "Script ended at: $(date)" >> results/$1_$2.cc
+             # Navigate back to the original directory
+             cd "$current_dir"
+            </code></pre>
           </div>
         </div>
         
