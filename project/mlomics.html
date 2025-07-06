@@ -335,34 +335,7 @@
     });
   </script>
 
-
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Experimental results and downstream analyses</h2>
-          <div class="content has-text-justified">
-            <p> (a) PREC bar plots for each baseline method across all datasets. Overall, machine
-learning-based methods (Subtype-GAN, DCAP, MAUI, XOmiVAE, CustOmics, and DeepCC) outperformed
-traditional statistical methods (SVM, XGBoost, RF, and LR). (b) SIL heatmaps for each baseline method across all
-datasets. Methods employing deep generative neural network architectures (Subtype-GAN, DCAP, MAUI,
-XOmiVAE, and MCluster-VAEs) generally outperformed other methods (SNF, NEMO, CIMLR, iClusterBayes,
-and moCluster). (c) Box plots for each baseline method across three imputation datasets. Matrix decomposition
-methods (SVD, Spectral) outperformed deep learning-based methods (GAIN, GNN). (d–e) Schematic illustrations
-of downstream analysis results based on the clustering outcomes of XOmiVAE applied to specific cancer patient
-clustering datasets. In the survival analysis plot, survival curves in different colors correspond to distinct clustering
-groups. In the volcano plot and KEGG pathway analysis, red and blue indicate downregulated and upregulated
-genes between patient groups, respectively. In the patient group clustering plot, different colors represent samples
-belonging to different clusters. In the simulated gene knockout analysis, red and green dots indicate sample
-clustering before and after expression knockout, respectively.
-                </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hero">
+    <section class="hero">
     <div class="hero-body">
         <div class="container is-max-desktop">
             <div class="columns is-centered">
@@ -378,6 +351,26 @@ clustering before and after expression knockout, respectively.
 </section>
 
 
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Experimental results and downstream analyses</h2>
+          <div class="content has-text-justified">
+            <p> (a) Precision bar plots for each baseline method across all datasets. (b) SIL heatmaps for each baseline method across all
+datasets. (c) Box plots for each baseline method across three imputation datasets.(d–e) Schematic illustrations
+of downstream analysis results based on the clustering outcomes of XOmiVAE applied to specific cancer patient
+clustering datasets. In the survival analysis plot, survival curves in different colors correspond to distinct clustering
+groups. In the volcano plot and KEGG pathway analysis, red and blue indicate downregulated and upregulated
+genes between patient groups, respectively. In the patient group clustering plot, different colors represent samples
+belonging to different clusters. In the simulated gene knockout analysis, red and green dots indicate sample
+clustering before and after expression knockout, respectively.
+                </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
@@ -385,7 +378,7 @@ clustering before and after expression knockout, respectively.
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">Reference</h2>
-      Please kindly cite our paper if you use our code or results:
+      Please kindly cite our paper if you use our datasets or results:
       <pre><code>@article{2025mlomics,
         title     = {MLOmics: Cancer Multi-Omics Database for Machine Learning},
         author    = {Yang, Ziwei and Kotoge, Rikuto and Piao, Xihao and Chen, Zheng and Zhu, Lingwei and Gao, Peng and Matsubara, Yasuko and Sakurai, Yasushi and Sun, Jimeng},
